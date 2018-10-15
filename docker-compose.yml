@@ -6,9 +6,9 @@ services:
     ports:
       - '20080:80'
     volumes:
-      - ~/:/var/www/html
-      - ~/docker/webserver/vhosts:/etc/apache2/sites-enabled
-      - ~/docker/webserver/php:/usr/local/etc/php
+      - "$PWD:/var/www/html"
+      - "$PWD/docker/webserver/vhosts:/etc/apache2/sites-enabled"
+      - "$PWD/docker/webserver/php:/usr/local/etc/php"
     links:
       - mysql
 
@@ -19,8 +19,8 @@ services:
     ports:
       - '23306:3306'
     volumes:
+      - "./docker/mysql:/etc/mysql"
       - mysql-data:/var/lib/mysql
-      - ~/docker/mysql:/etc/mysql
 
 volumes:
   mysql-data:
