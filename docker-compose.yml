@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  webserver:
+    image: php:7.1-apache
+    ports:
+      - '20080:80'
+    volumes:
+      - ./webserver:/var/www/html
+      #- ./env/webserver/vhosts:/etc/apache2/sites-enabled
+      #- ./env/webserver/php:/usr/local/etc/php
+    links:
+      - mysql
+
+  mysql:
+    image: mysql:5.7.10
+    environment:
+      MYSQL_ROOT_PASSWORD: 'secret'
+    ports:
+      - '23306:3306'
+    volumes:
+      - mysql-data:/var/lib/mysql
+      #- ./env/mysql:/etc/mysql
+
+volumes:
+  mysql-data:
+    driver: local
