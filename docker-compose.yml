@@ -2,7 +2,8 @@ version: '2'
 
 services:
   webserver:
-    image: php:7.1-apache
+    #image: php:7.1-apache
+    build: docker/webserver
     ports:
       - '20080:80'
     volumes:
