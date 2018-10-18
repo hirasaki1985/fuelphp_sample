@@ -1,10 +1,16 @@
 # fuelphp_sample
 
-
 ## develop
 ### install
+#### use docker
 ```
 $ docker-compose up -d
+```
+
+#### use vagrant
+```
+$ vagrant plugin install vagrant-vbguest
+$ vagrant up
 ```
 
 ### /etc/hosts
@@ -28,4 +34,7 @@ $ docker-compose stop && docker-compose rm -f
 $ docker stop fuelphp_sample_webserver_1 && docker rm fuelphp_sample_webserver_1 && docker stop fuelphp_sample_mysql_1 && docker rm fuelphp_sample_mysql_1
 ```
 
+## 参考
+[【PHP】PHPをインストールしたらやっておきたい設定](https://qiita.com/knife0125/items/0e1af52255e9879f9332)
+[CentOS 6 の環境にPHP7をインストールしてApacheで動かすまで](https://qiita.com/ssaita/items/9e0170251d45ed1b8818)
 
