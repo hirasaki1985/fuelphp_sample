@@ -110,7 +110,7 @@ $setup = <<SCRIPT
   # /sbin/service httpd restart
   /sbin/chkconfig httpd on
   cp -rp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bkup
-  cp -rp $PROJECT_ROOT/dev_env/webserver/httpd/httpdconf.vagrant.conf /etc/httpd/conf/httpd.conf
+  cp -rp $PROJECT_ROOT/dev_env/webserver/httpd/httpd.vagrant.conf /etc/httpd/conf/httpd.conf
   cp -rp $PROJECT_ROOT/dev_env/webserver/vhosts/* /etc/httpd/conf.d/
   /usr/bin/systemctl enable httpd.service
 
@@ -154,7 +154,8 @@ $setup = <<SCRIPT
   cp -p $PROJECT_ROOT/dev_env/mysql/my.cnf /etc/my.cnf
   chmod 644 /etc/my.cnf
 
-  service mysqld start
+  service mysqld restart
+
   ## exec sql
   export MYSQL_PWD=
   echo ${MYSQL_PWD}
