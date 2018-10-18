@@ -9,11 +9,11 @@ RUN docker-php-ext-install pdo_mysql mysqli
 
 ## copy
 ### vhosts
-#RUN cp /var/www/html/docker/webserver/vhosts/example.conf /etc/apache2/sites-enabled
+#RUN cp /var/www/html/dev_env/webserver/vhosts/example.conf /etc/apache2/sites-enabled
 COPY vhosts/example.conf /etc/apache2/sites-enabled/example.conf
 
 ### php.ini
-#RUN cp /var/www/html/docker/webserver/php/php.ini /usr/local/etc/php
+#RUN cp /var/www/html/dev_env/webserver/php/php.ini /usr/local/etc/php
 RUN cp -p /usr/local/etc/php/php.ini /usr/local/etc/php/php.ini.bkup
 COPY php/php.ini /usr/local/etc/php/php.ini
 

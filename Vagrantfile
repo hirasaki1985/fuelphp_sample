@@ -110,8 +110,8 @@ $setup = <<SCRIPT
   # /sbin/service httpd restart
   /sbin/chkconfig httpd on
   cp -rp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bkup
-  cp -rp $PROJECT_ROOT/docker/webserver/httpd/httpdconf.vagrant.conf /etc/httpd/conf/httpd.conf
-  cp -rp $PROJECT_ROOT/docker/webserver/vhosts/* /etc/httpd/conf.d/
+  cp -rp $PROJECT_ROOT/dev_env/webserver/httpd/httpdconf.vagrant.conf /etc/httpd/conf/httpd.conf
+  cp -rp $PROJECT_ROOT/dev_env/webserver/vhosts/* /etc/httpd/conf.d/
   /usr/bin/systemctl enable httpd.service
 
   ## install php71
@@ -121,7 +121,7 @@ $setup = <<SCRIPT
   yum install -y --enablerepo=remi-php71,epel php php-devel php-common php-cli php-pdo php-mcrypt php-mbstring php-gd php-mysqlnd php-pear php-soap php-xml php-xmlrpc php-pecl-apc
 
   cp -p /etc/php.ini /etc/php.ini.bkup
-  cp -p $PROJECT_ROOT/docker/webserver/php/php.vagrant.ini /etc/php.ini
+  cp -p $PROJECT_ROOT/dev_env/webserver/php/php.vagrant.ini /etc/php.ini
   php -v
 
   ## install composer
@@ -151,7 +151,14 @@ $setup = <<SCRIPT
   mkdir -p /etc/mysql/
   ln -s /etc/my.cnf.d /etc/mysql/conf.d
   cp -p /etc/my.cnf /etc/my.cnf.bkup
-  cp -p $PROJECT_ROOT/docker/mysql/my.cnf /etc/my.cnf
+  cp -p $PROJECT_ROOT/dev_env/mysql/my.cnf /etc/my.cnf
+  chmod 644 /etc/my.cnf
+
+  service mysqld start
+  ## exec sql
+  export MYSQL_PWD=
+  echo ${MYSQL_PWD}
+  mysql -u root < $PROJECT_ROOT/dev_env/mysql/initialize.sql
 
   ## auto start
   /usr/bin/systemctl enable mysqld.service

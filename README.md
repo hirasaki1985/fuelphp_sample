@@ -26,7 +26,7 @@ http://example.com:20080/
 ## memo
 ```
 $ docker exec -it fuelphp_sample_webserver_1 bash
-(container)$ cp /var/www/html/docker/webserver/vhosts/driverteach.conf /etc/apache2/sites-enabled
+(container)$ cp /var/www/html/dev_env/webserver/vhosts/driverteach.conf /etc/apache2/sites-enabled
 (container)$ apachectl configtest
 (container)$ service apache2 restart
 
