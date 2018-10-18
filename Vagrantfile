@@ -112,61 +112,13 @@ $setup = <<SCRIPT
   cp -rp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bkup
   cp -rp $PROJECT_ROOT/docker/webserver/httpd/httpdconf.vagrant.conf /etc/httpd/conf/httpd.conf
   cp -rp $PROJECT_ROOT/docker/webserver/vhosts/* /etc/httpd/conf.d/
-
-  ## install php71 preparation
-  ### re2c
-  #cd /tmp && wget http://downloads.sourceforge.net/project/re2c/re2c/0.14.3/re2c-0.14.3.tar.gz \
-  #  tar zxvf re2c-0.14.3.tar.gz && cd re2c-0.14.3 && ./configure && make && make install
-  cd /tmp && curl http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/r/re2c-0.14.3-2.el7.x86_64.rpm --output re2c-0.14.3-2.el7.x86_64.rpm
-  rpm -Uvh re2c-0.14.3-2.el7.x86_64.rpm
-
-  ### bison
-  cd /tmp && wget http://ftp.gnu.org/gnu/bison/bison-3.0.4.tar.gz && tar zxvf bison-3.0.4.tar.gz && \
-    cd bison-3.0.4 && ./configure && make && make install
+  /usr/bin/systemctl enable httpd.service
 
   ## install php71
   # yum-config-manager --enable remi-php71
   # yum install -y --enablerepo=remi-php71 php-fpm php-mcrypt php-cli php-common php-devel php-gd php-mbstring php-mysqlnd php-opcache php-pdo php-pear php-pecl-apcu php-pecl-zip php-process php-xml
-  cd /tmp && git clone https://git.php.net/repository/php-src.git
-  cd php-src/ && git checkout tags/php-7.1.23 -b php-7.1.23 && buildconf --force
-  ./configure \
-    --prefix=$HOME/tmp/usr \
-    --with-config-file-path=$HOME/tmp/usr/etc \
-    --enable-mbstring \
-    --enable-zip \
-    --enable-bcmath \
-    --enable-pcntl \
-    --enable-ftp \
-    --enable-exif \
-    --enable-calendar \
-    --enable-sysvmsg \
-    --enable-sysvsem \
-    --enable-sysvshm \
-    --enable-wddx \
-    --with-curl \
-    --with-mcrypt \
-    --with-iconv \
-    --with-gmp \
-    --with-pspell \
-    --with-gd \
-    --with-jpeg-dir=/usr \
-    --with-png-dir=/usr \
-    --with-zlib-dir=/usr \
-    --with-xpm-dir=/usr \
-    --with-freetype-dir=/usr \
-    --with-t1lib=/usr \
-    --enable-gd-native-ttf \
-    --enable-gd-jis-conv \
-    --with-openssl \
-    --with-mysql=/usr \
-    --with-pdo-mysql=/usr \
-    --with-gettext=/usr \
-    --with-zlib=/usr \
-    --with-bz2=/usr \
-    --with-recode=/usr \
-    --with-mysqli=/usr/bin/mysql_config \
-    --with-apxs2=/usr/sbin/apxs
-
+  yum install -y https://rpms.remirepo.net/enterprise/7/
+  yum install -y --enablerepo=remi-php71,epel php php-devel php-common php-cli php-pdo php-mcrypt php-mbstring php-gd php-mysqlnd php-pear php-soap php-xml php-xmlrpc php-pecl-apc
 
   cp -p /etc/php.ini /etc/php.ini.bkup
   cp -p $PROJECT_ROOT/docker/webserver/php/php.vagrant.ini /etc/php.ini
@@ -202,7 +154,7 @@ $setup = <<SCRIPT
   cp -p $PROJECT_ROOT/docker/mysql/my.cnf /etc/my.cnf
 
   ## auto start
-  # /usr/bin/systemctl enable mysqld.service
+  /usr/bin/systemctl enable mysqld.service
   /sbin/chkconfig mysqld on
 
   #
