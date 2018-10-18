@@ -23,6 +23,11 @@ $ vagrant up
 http://example.com:20080/
 ```
 
+### migrate
+```
+$ docker exec -it fuelphp_sample_webserver_1 bash
+```
+
 ## memo
 ```
 $ docker exec -it fuelphp_sample_webserver_1 bash

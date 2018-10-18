@@ -3,7 +3,8 @@ version: '2'
 services:
   webserver:
     #image: php:7.1-apache
-    build: docker/webserver
+    build: dev_env/webserver
+    # container_name: webserver
     ports:
       - '20080:80'
     volumes:
@@ -14,14 +15,19 @@ services:
       - mysql
 
   mysql:
-    image: mysql:5.7.10
+    #image: mysql:5.7.10
+    build: dev_env/mysql
+    # container_name: mysql
+    hostname: dbserver
     environment:
-      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_ROOT_PASSWORD: 'secret'
     ports:
       - '23306:3306'
     volumes:
-      - "$PWD/dev_env/mysql:/etc/mysql"
+      # - "$PWD/dev_env/mysql:/etc/mysql"
       - mysql-data:/var/lib/mysql
+    # volumes_from:
+    #  - webserver
 
 volumes:
   mysql-data:

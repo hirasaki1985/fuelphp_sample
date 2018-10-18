@@ -5,7 +5,7 @@ FROM php:7.1-apache
 
 ## install
 #RUN apt-get install php php-devel php-pear php-mbstring php-gd php-mysql php-xml php-mcrypt -y
-RUN docker-php-ext-install pdo_mysql mysqli
+RUN docker-php-ext-install pdo pdo_mysql mysqli
 
 ## copy
 ### vhosts

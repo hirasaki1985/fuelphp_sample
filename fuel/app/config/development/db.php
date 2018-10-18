@@ -7,12 +7,12 @@ return array(
 	'default' => array(
 		'connection'  => array(
 			// 'dsn'        => 'mysql:host=localhost;dbname=fuel_dev;charset=utf8;unix_socket=/var/run/mysqld/mysqld.sock',
-			'hostname' => 'localhost',
+			'hostname' => 'mysql',
 			'port'     => '3306',
 			'database' => 'fuel_dev',
 			'username'   => 'root',
-			'password'   => '',
-			'socket' => '/var/run/mysqld/mysqld.sock'
+			'password'   => 'secret',
+			// 'socket' => '/var/run/mysqld/mysqld.sock'
 		),
 		'profiling' => true,
 	),
