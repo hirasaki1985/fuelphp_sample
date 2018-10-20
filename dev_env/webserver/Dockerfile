@@ -14,7 +14,7 @@ COPY vhosts/example.conf /etc/apache2/sites-enabled/example.conf
 
 ### php.ini
 #RUN cp /var/www/html/dev_env/webserver/php/php.ini /usr/local/etc/php
-RUN cp -p /usr/local/etc/php/php.ini /usr/local/etc/php/php.ini.bkup
+#RUN cp -p /usr/local/etc/php/php.ini /usr/local/etc/php/php.ini.bkup
 COPY php/php.ini /usr/local/etc/php/php.ini
 
 # RUN service apache2 restart
