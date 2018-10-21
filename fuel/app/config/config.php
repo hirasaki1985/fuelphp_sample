@@ -108,6 +108,8 @@ return array(
 	// 'log_threshold'    => Fuel::L_WARNING,
 	// 'log_path'         => APPPATH.'logs/',
 	// 'log_date_format'  => 'Y-m-d H:i:s',
+	'log_path' => '/var/log/fuelphp/',
+  'log_file' => 'fuelphp.log',
 
 	/**
 	 * Security settings

@@ -29,6 +29,7 @@ Vagrant.configure("2") do |config|
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # NOTE: This will enable public access to the opened port
   config.vm.network "forwarded_port", guest: 80, host: 20080
+  config.vm.network "forwarded_port", guest: 3306, host: 23306
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine and only allow access
@@ -53,7 +54,7 @@ Vagrant.configure("2") do |config|
   #config.vm.synced_folder ".", "/var/www/html", type: "smb", mount_options: ["username=${YOUR_USERNAME}","password=${YOUR_PASSWORD"]
 
   ## other os
-  config.vm.synced_folder "./", "/var/www/html"
+  config.vm.synced_folder "./", "/var/www/html", mount_options: ['dmode=777','fmode=755']
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -84,6 +85,7 @@ end
 $setup = <<SCRIPT
   ## defines
   PROJECT_ROOT=/var/www/html
+  LOG_DIR=/var/log/fuelphp/
   #mkdir -p /var/www/
   #ln -s /vagrant/ /var/www/html
 
@@ -178,9 +180,15 @@ $setup = <<SCRIPT
   #
   # project
   #
-  cd $PROJECT_ROOT && /usr/local/bin/composer install
+  ## hosts
   echo '127.0.0.1 mysql' >> /etc/hosts
 
+  ## log
+  mkdir -p $LOG_DIR
+  chmod -R 777 $LOG_DIR
+  cd $PROJECT_ROOT && \
+    /usr/local/bin/composer install && \
+    php oil refine migrate
 SCRIPT
 
 $start = <<SCRIPT

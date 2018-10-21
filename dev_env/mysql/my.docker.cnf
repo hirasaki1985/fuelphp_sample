@@ -59,11 +59,4 @@ symbolic-links=0
 # * IMPORTANT: Additional settings that can override those from this file!
 #   The files must end with '.cnf', otherwise they'll be ignored.
 #
-
-[mysql]
-
-# mysqlの文字コードもutf-8に
-default-character-set=utf8
-
 !includedir /etc/mysql/conf.d/
-
