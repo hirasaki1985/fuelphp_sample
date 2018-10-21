@@ -179,6 +179,7 @@ $setup = <<SCRIPT
   # project
   #
   cd $PROJECT_ROOT && /usr/local/bin/composer install
+  echo '127.0.0.1 mysql' >> /etc/hosts
 
 SCRIPT
 

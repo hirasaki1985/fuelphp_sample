@@ -1,4 +1,5 @@
 # fuelphp_sample
+docker-composeかvagrantを使用してfuel_php1.8の開発環境構築をするためのリポジトリです。
 
 ## develop
 ### install
@@ -37,6 +38,7 @@ $ docker exec -it fuelphp_sample_webserver_1 bash
 
 $ docker-compose stop && docker-compose rm -f
 $ docker stop fuelphp_sample_webserver_1 && docker rm fuelphp_sample_webserver_1 && docker stop fuelphp_sample_mysql_1 && docker rm fuelphp_sample_mysql_1
+$ docker-compose build --no-cache && docker-compose up -d
 ```
 
 ## 参考

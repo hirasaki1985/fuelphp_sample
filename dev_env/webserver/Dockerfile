@@ -1,11 +1,12 @@
 FROM php:7.1-apache
 
 ## init
-#RUN apt-get update -y
+RUN apt-get update -y
+RUN apt-get install -y git zip unzip
 
 ## install
 #RUN apt-get install php php-devel php-pear php-mbstring php-gd php-mysql php-xml php-mcrypt -y
-RUN docker-php-ext-install pdo pdo_mysql mysqli
+RUN docker-php-ext-install pdo_mysql mysqli
 
 ## copy
 ### vhosts

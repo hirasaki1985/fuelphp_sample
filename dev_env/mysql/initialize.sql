@@ -1,4 +1,4 @@
-create database fuel_dev character set utf8mb4;
+CREATE DATABASE IF NOT EXISTS fuel_dev character set utf8mb4;
 
 # use fuel_dev;
 # create table migration(
@@ -14,8 +14,8 @@ use mysql;
 #GRANT ALL PRIVILEGES ON *.* TO root@172.19.0.1;
 #GRANT ALL PRIVILEGES ON *.* TO root@192.168.33.10;
 #GRANT ALL PRIVILEGES ON *.* TO root@localhost;
-GRANT ALL PRIVILEGES ON *.* TO root@'%';
+#GRANT ALL PRIVILEGES ON *.* TO root@'%';
 
-# UPDATE user SET authentication_string=password('secret') WHERE user='root'
+UPDATE user SET authentication_string=password('secret') WHERE user='root'
 
-FLUSH PRIVILEGES;
+#FLUSH PRIVILEGES;

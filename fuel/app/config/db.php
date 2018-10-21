@@ -18,5 +18,5 @@ return array(
     'enable_cache' => true,
     'profiling'    => false,
     'readonly'     => false,
-),
+  ),
 );
