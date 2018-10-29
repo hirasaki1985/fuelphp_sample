@@ -1,18 +1,17 @@
 <?php
 return array(
-  'version' => 
+  'version' =>
   array(
-    'app' => 
+    'app' =>
     array(
-      'default' => 
+      'default' =>
       array(
-        0 => '001_create_users',
       ),
     ),
-    'module' => 
+    'module' =>
     array(
     ),
-    'package' => 
+    'package' =>
     array(
     ),
   ),
