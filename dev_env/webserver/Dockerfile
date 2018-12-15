@@ -8,6 +8,9 @@ RUN apt-get install -y apt-utils git zip unzip
 #RUN apt-get install php php-devel php-pear php-mbstring php-gd php-mysql php-xml php-mcrypt -y
 RUN docker-php-ext-install pdo_mysql mysqli
 
+## mod rewrite
+RUN a2enmod rewrite
+
 ## copy
 ### vhosts
 #RUN cp /var/www/html/dev_env/webserver/vhosts/example.conf /etc/apache2/sites-enabled
